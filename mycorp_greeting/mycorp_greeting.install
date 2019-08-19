@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ */
+
+/**
+ * Increase module weight to ensure hooks execute in last.
+ */
+
+/**
+ * Enable 'greetings' feature.
+ */
+function mycorp_greeting_update_7004() {
+  module_enable(array('greeting'));
+}

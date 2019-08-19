@@ -1,0 +1,139 @@
+<?php
+
+/**
+ * @file
+ * Contains the resource declarations for the service APIs and other commons
+ * functions/hooks.
+ */
+
+/**
+ * Implements hook_services_resources().
+ */
+function mycorp_greeting_services_resources() {
+  return array(
+    'greetings' => array(
+      'index' => array(
+        'help' => 'List all greeting content',
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'mycorp_greeting',
+          'name' => 'includes/mycorp_greeting.services',
+        ),
+        'callback' => '_mycorp_greeting_content_index',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+      ),
+      'retrieve' => array(
+        'help' => 'Fetch data of single greeting',
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'mycorp_greeting',
+          'name' => 'includes/mycorp_greeting.services',
+        ),
+        'callback' => '_mycorp_greeting_content_retrieve',
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'nid',
+            'type' => 'int',
+            'description' => 'Nid of the greeting content type.',
+            'source' => array('path' => '0'),
+            'optional' => FALSE,
+          ),
+        ),
+      ),
+      'create' => array(
+        'help' => 'Create a greeting cotent type',
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'mycorp_greeting',
+          'name' => 'includes/mycorp_greeting.services',
+        ),
+        'callback' => '_mycorp_greeting_content_create',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+         array(
+           'name' => 'data',
+           'type' => 'struct',
+           'description' => 'The greeting node object',
+           'source' => 'data',
+           'optional' => FALSE,
+         ),
+        ),
+      ),
+      'update' => array(
+        'help' => 'Update a greeting content type node',
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'mycorp_greeting',
+          'name' => 'includes/mycorp_greeting.services',
+        ),
+        'callback' => '_mycorp_greeting_content_node_update',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'nid',
+            'type' => 'int',
+            'description' => 'The nid of the node to update',
+            'source' => array('path' => '0'),
+            'optional' => FALSE,
+          ),
+          array(
+            'name' => 'data',
+            'type' => 'struct',
+            'optional' => FALSE,
+            'source' => 'data',
+            'description' => 'The node data to update',
+          ),
+        ),
+      ),
+      'delete' => array(
+        'help' => 'Deletes the greeting content type node',
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'mycorp_greeting',
+          'name' => 'includes/mycorp_greeting.services',
+        ),
+        'callback' => '_mycorp_greeting_content_node_delete',
+        'access arguments' => array('access content'),
+        'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'nid',
+            'type' => 'int',
+            'description' => 'The nid of the greeting content type to delete',
+            'source' => array('path' => '0'),
+            'optional' => FALSE,
+          ),
+        ),
+      ),
+      'targeted_actions' => array(
+        'publish' => array(
+          'help' => 'Publish or unpublish greeting content type node',
+          'file' => array(
+            'type' => 'inc',
+            'module' => 'mycorp_greeting',
+            'name' => 'includes/mycorp_greeting.services',
+          ),
+          'callback' => '_mycorp_greeting_content_node_pubish_unpublish',
+          'access arguments' => array('access content'),
+          'access arguments append' => FALSE,
+          'args' => array(
+            array(
+              'name' => 'nid',
+              'type' => 'int',
+              'description' => 'The nid of the greeting content type to publish or unpublish',
+              'source' => array('path' => '0'),
+              'optional' => FALSE,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
