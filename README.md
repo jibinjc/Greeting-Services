@@ -1,5 +1,5 @@
 # Greeting-Services
-This repo will show how to add custom services action to update,delete,create &amp; publish D7 Content type
+This repo will show how to add custom services action to update,delete,create and to publish D7 Content types. Here below the code will demostrate you with an example content type "Greeting" with its fields Greeting Title and Greeting Description.
 
 On cloning this repo we will get two modules. One is our custom module "mycorp-greeting" which is managing the Drupal 7 Content type Create, Update, Index, Edit, Delete & Publish option within various JSON requests, The Another module "greeting" is a feature module which is managing all the features required for the working of services. This includes the Greeting Content type creation and Endpoints for the Services.
 
