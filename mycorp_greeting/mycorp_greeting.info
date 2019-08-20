@@ -1,5 +1,5 @@
 name = MyCorp Greeting
 description = Creating resources with Services
-package = Notes example
+package = Greeting Services Json API example
 dependencies[] = services
 core = 7.x
